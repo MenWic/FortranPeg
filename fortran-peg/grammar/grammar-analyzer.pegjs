@@ -1,20 +1,20 @@
-grammar
-  = rule (nl rule)*
+init
+  = regla (nl regla)*
 
-rule
-  = name nl "=" _ choice nl ";"
+regla
+  = nombre nl "=" nl choice nl ";"
   
 choice
-  = concatenation (nl "/" nl concatenation)*
+  = concat (nl "/" nl concat)*
 
-concatenation
+concat
   = expression (_ expression)*
 
 expression
   = parsingExpression [?+*]?
 
 parsingExpression
-  = name
+  = nombre
   / string
   / range
 
@@ -27,7 +27,7 @@ range = "[" input_range+ "]"
 input_range = [^[\]-] "-" [^[\]-]
 			/ [^[\]]+
 
-name "identificador"
+nombre "identificador"
   = [_a-z]i[_a-z0-9]i*
 
 _ "espacios en blanco"
