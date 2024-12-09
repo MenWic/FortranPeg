@@ -1,33 +1,37 @@
-init
+gramatica
   = regla (nl regla)*
 
 regla
-  = nombre nl "=" nl choice nl ";"
+  = identificador nl "=" nl eleccion nl ";"
   
-choice
-  = concat (nl "/" nl concat)*
+eleccion
+  = concatenation (nl "/" nl concatenation)*
 
-concat
+concatenation
   = expression (_ expression)*
 
 expression
   = parsingExpression [?+*]?
 
 parsingExpression
-  = nombre
+
+  = identificador
+
   / string
   / range
+  / "(" _ eleccion _ ")"
 
 string
-	= ["] [^"]* ["]
+  = ["] [^"]* ["]
     / ['] [^']* [']
     
 range = "[" input_range+ "]"
 
 input_range = [^[\]-] "-" [^[\]-]
-			/ [^[\]]+
+      / [^[\]]+
 
-nombre "identificador"
+identificador "identificador"
+
   = [_a-z]i[_a-z0-9]i*
 
 _ "espacios en blanco"

@@ -2,7 +2,7 @@ name: Despliegue de FortranPeg a Github Pages
 
 on:
   push:
-    branches: 'devMenWic'
+    branches: 'main'
 
 jobs:
   build_site:
