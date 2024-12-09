@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static'; //Usar adapter-static, no el auto (da error en deploy de github page)
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -14,8 +14,8 @@ const config = {
 		adapter: adapter(),
 		paths: {
 			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
-		},
-	},
+		}
+	}
 };
 
 export default config;
